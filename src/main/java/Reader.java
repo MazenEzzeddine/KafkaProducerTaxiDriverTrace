@@ -16,7 +16,7 @@ public class Reader {
     private transient BufferedReader reader;
     private transient InputStream gzipStream;
 
-    public int servingSpeed = 10;
+    public int servingSpeed = 20;
 
 
     private static transient DateTimeFormatter timeFormatter =
@@ -34,10 +34,7 @@ public class Reader {
         reader = new BufferedReader(new InputStreamReader(gzipStream, "UTF-8"));
          String line;
          TaxiRide ride;
-
          Random rnd = new Random();
-
-
          if ( (line = reader.readLine()) != null) {
              // read first ride
              ride = TaxiRide.fromString(line);
@@ -48,54 +45,34 @@ public class Reader {
          }
 
          while ((line = reader.readLine()) != null) {
-
              long rideEventTime;
              ride = TaxiRide.fromString(line);
              //System.out.println(ride);
              rides.add(ride);
              counter++;
-
              rideEventTime = getEventTime(ride);
-
              long now = Calendar.getInstance().getTimeInMillis();
              long servingTime = toServingTime(servingStartTime, dataStartTime, rideEventTime);
              long waitTime = servingTime - now;
-
-
              //1 hour = 24344
-
 
              if(waitTime> 0){
                  System.out.println("sleeping for " + waitTime);
              }
-
              Thread.sleep( (waitTime > 0) ? waitTime : 0);
-
-
              Customer custm = new Customer(rnd.nextInt(), UUID.randomUUID().toString());
              KafkaProducerExample.
                      producer.send(new ProducerRecord<String, Customer>(KafkaProducerExample.config.getTopic(),
                              null, null, UUID.randomUUID().toString(), custm));
-
              //System.out.println("serving ride " +  ride.toString());
-
              log.info("sending event {}", ride.toString());
-
              if(counter==168873/*24344*//*1000*/)
                  break;
-
          }
-
-
          this.reader.close();
          this.reader = null;
          this.gzipStream.close();
          this.gzipStream = null;
-
-
-
-
-
     }
 
 
