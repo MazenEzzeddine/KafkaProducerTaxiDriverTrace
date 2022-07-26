@@ -1,6 +1,5 @@
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Serializer;
-
 import java.nio.ByteBuffer;
 import java.util.Map;
 

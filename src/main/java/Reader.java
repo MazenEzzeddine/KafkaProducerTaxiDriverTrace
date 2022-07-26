@@ -4,26 +4,19 @@ import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
 import java.io.*;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
 
 public class Reader {
-
-
     private static final Logger log = LogManager.getLogger(KafkaProducerExample.class);
     private transient BufferedReader reader;
     private transient InputStream gzipStream;
 
     public int servingSpeed = 20;
-
-
     private static transient DateTimeFormatter timeFormatter =
             DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").withLocale(Locale.US).withZoneUTC();
             ArrayList<TaxiRide> rides = new ArrayList<TaxiRide>();
-
-
 
      void read() throws IOException, InterruptedException {
          long counter = 0;
@@ -66,7 +59,7 @@ public class Reader {
                              null, null, UUID.randomUUID().toString(), custm));
              //System.out.println("serving ride " +  ride.toString());
              log.info("sending event {}", ride.toString());
-             if(counter==168873/*24344*//*1000*/)
+             if(counter==1134709 /*168873*//*24344*//*1000*/)
                  break;
          }
          this.reader.close();

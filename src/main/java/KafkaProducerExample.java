@@ -32,7 +32,6 @@ public class KafkaProducerExample {
         int delay = config.getDelay();
         producer = new KafkaProducer<String, Customer>(props);
         log.info("Sending {} messages ...", config.getMessageCount());
-
         new Reader().read();
 
     }

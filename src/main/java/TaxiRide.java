@@ -1,8 +1,6 @@
-
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
 import java.util.Locale;
 
 /**
@@ -68,19 +66,15 @@ public class TaxiRide {
         sb.append(endLon).append(",");
         sb.append(endLat).append(",");
         sb.append(passengerCnt);
-
         return sb.toString();
     }
 
     public static TaxiRide fromString(String line) {
-
         String[] tokens = line.split(",");
         if (tokens.length != 9) {
             throw new RuntimeException("Invalid record: " + line);
         }
-
         TaxiRide ride = new TaxiRide();
-
         try {
             ride.rideId = Long.parseLong(tokens[0]);
 
@@ -104,11 +98,9 @@ public class TaxiRide {
             ride.endLon = tokens[6].length() > 0 ? Float.parseFloat(tokens[6]) : 0.0f;
             ride.endLat = tokens[7].length() > 0 ? Float.parseFloat(tokens[7]) : 0.0f;
             ride.passengerCnt = Short.parseShort(tokens[8]);
-
         } catch (NumberFormatException nfe) {
             throw new RuntimeException("Invalid record: " + line, nfe);
         }
-
         return ride;
     }
 
