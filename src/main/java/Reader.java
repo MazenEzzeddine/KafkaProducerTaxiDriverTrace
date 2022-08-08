@@ -13,10 +13,10 @@ public class Reader {
     private transient BufferedReader reader;
     private transient InputStream gzipStream;
 
-    public int servingSpeed = 20;
+    public int servingSpeed = 40;
     private static transient DateTimeFormatter timeFormatter =
             DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").withLocale(Locale.US).withZoneUTC();
-            ArrayList<TaxiRide> rides = new ArrayList<TaxiRide>();
+            //ArrayList<TaxiRide> rides = new ArrayList<TaxiRide>();
 
      void read() throws IOException, InterruptedException {
          long counter = 0;
@@ -34,14 +34,14 @@ public class Reader {
              //System.out.println(ride);
              dataStartTime = getEventTime(ride);
              counter++;
-             rides.add(ride);
+            // rides.add(ride);
          }
 
          while ((line = reader.readLine()) != null) {
              long rideEventTime;
              ride = TaxiRide.fromString(line);
              //System.out.println(ride);
-             rides.add(ride);
+            // rides.add(ride);
              counter++;
              rideEventTime = getEventTime(ride);
              long now = Calendar.getInstance().getTimeInMillis();
