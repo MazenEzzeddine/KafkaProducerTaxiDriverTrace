@@ -59,7 +59,7 @@ public class Reader {
                              null, null, UUID.randomUUID().toString(), custm));
              //System.out.println("serving ride " +  ride.toString());
              log.info("sending event {}", ride.toString());
-             if(counter==1134709 /*168873*//*24344*//*1000*/)
+             if(counter==2570415/*1134709*/ /*168873*//*24344*//*1000*/)
                  break;
          }
          this.reader.close();
