@@ -13,7 +13,7 @@ public class Reader {
     private transient BufferedReader reader;
     private transient InputStream gzipStream;
 
-    public int servingSpeed = 20;
+    public int servingSpeed = 40;
     private static transient DateTimeFormatter timeFormatter =
             DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").withLocale(Locale.US).withZoneUTC();
             ArrayList<TaxiRide> rides = new ArrayList<TaxiRide>();
