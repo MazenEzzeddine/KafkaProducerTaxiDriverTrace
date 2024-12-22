@@ -16,23 +16,27 @@ import static java.time.Instant.now;
 
 public class KafkaProducerExample {
     private static final Logger log = LogManager.getLogger(KafkaProducerExample.class);
-    private static long iteration = 0;
 
     static KafkaProducerConfig config;
     static KafkaProducer<String, Customer> producer;
     static Random rnd;
-    static long key;
-    static int eventsPerSeconds;
+
 
     public static void main(String[] args) throws InterruptedException, IOException, URISyntaxException {
-        rnd = new Random();
+  /*      rnd = new Random();
         config = KafkaProducerConfig.fromEnv();
         log.info(KafkaProducerConfig.class.getName() + ": {}", config.toString());
         Properties props = KafkaProducerConfig.createProperties(config);
         int delay = config.getDelay();
         producer = new KafkaProducer<String, Customer>(props);
-        log.info("Sending {} messages ...", config.getMessageCount());
+        log.info("Sending {} messages ...", config.getMessageCount());*/
+
         new Reader().read();
+
+
+
+
+
 
     }
 }
